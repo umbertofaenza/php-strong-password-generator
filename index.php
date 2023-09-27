@@ -30,7 +30,8 @@ include __DIR__ . "./functions.php";
         <form class="w-25">
             <div class="mb-3">
                 <label for="password-len" class="form-label">Password length</label>
-                <input type="number" name="password-len" min="1" value="<?= $password_length_input ?? '' ?>" class="
+                <input type="number" name="password-len" min="6" max="25" value="<?= $password_length_input ?? '' ?>"
+                    class="
                 form-control" id="password-len">
             </div>
             <button type="submit" class="btn btn-primary">Create</button>
