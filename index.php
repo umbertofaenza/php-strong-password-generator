@@ -1,7 +1,14 @@
 <?php
-$password_length_input = $_GET["password-len"] ?? '';
+session_start();
 
 include __DIR__ . "./functions.php";
+
+$password_length_input = $_GET["password-len"] ?? '';
+$_SESSION["generated_pwd"] = '';
+
+if ($password_length_input) {
+    header('Location: ./generatedpwd.php');
+}
 
 ?>
 
@@ -36,13 +43,9 @@ include __DIR__ . "./functions.php";
             </div>
             <button type="submit" class="btn btn-primary">Create</button>
         </form>
-
-        <!-- generated pwd -->
-        <h3 class="mt-5">
-            Generated password:
-        </h3>
-        <?= pwd_generator($password_length_input); ?>
     </div>
+    <!-- generate pwd -->
+    <?php pwd_generator($password_length_input) ?>
 </body>
 
 </html>
