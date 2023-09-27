@@ -1,3 +1,21 @@
+<?php
+$password_length_input = $_GET["password-len"] ?? '';
+function pwd_generator($password_length_input)
+{
+    $possible_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!£$%&*()";
+    $max_chars = (strlen($possible_chars));
+    $generated_pwd = '';
+
+    for ($i = 0; $i < $password_length_input; $i++) {
+        $rand_index = rand(0, $max_chars);
+        $generated_pwd .= $possible_chars[$rand_index];
+    }
+
+    return $generated_pwd;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,6 +33,26 @@
 </head>
 
 <body>
+
+    <div class="container my-5">
+        <h1 class="mb-5">Strong Password Generator</h1>
+
+        <!-- form -->
+        <form class="w-25">
+            <div class="mb-3">
+                <label for="password-len" class="form-label">Password length</label>
+                <input type="number" name="password-len" min="1" value="<?= $password_length_input ?? '' ?>" class="
+                form-control" id="password-len">
+            </div>
+            <button type="submit" class="btn btn-primary">Create</button>
+        </form>
+
+        <!-- generated pwd -->
+        <h3 class="mt-5">
+            Generated password:
+        </h3>
+        <?= pwd_generator($password_length_input); ?>
+    </div>
 </body>
 
 </html>
